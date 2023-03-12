@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 
 export default function Vans() {
-    const [vans, setVans] = React.useState([])
-    React.useEffect(() => {
+    const [vans, setVans] = useState([])
+    useEffect(() => {
         fetch("/api/vans")
             .then(res => res.json())
             .then(data => setVans(data.vans))
@@ -10,7 +10,7 @@ export default function Vans() {
 
     const vanElements = vans.map(van => (
         <div key={van.id} className="van-tile">
-            <img src={van.imageUrl} />
+            <img src={van.imageUrl} alt={van.name} />
             <div className="van-info">
                 <h3>{van.name}</h3>
                 <p>${van.price}<span>/day</span></p>
